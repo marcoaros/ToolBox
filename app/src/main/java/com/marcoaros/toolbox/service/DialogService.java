@@ -6,7 +6,10 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Handler;
 import android.os.IBinder;
+import android.os.RemoteException;
 import android.view.WindowManager;
+
+import com.marcoaros.toolbox.ui.login.IMyTest;
 
 public class DialogService extends Service {
     public DialogService() {
@@ -16,7 +19,7 @@ public class DialogService extends Service {
     public IBinder onBind(Intent intent) {
         // TODO: Return the communication channel to the service.
 //        throw new UnsupportedOperationException("Not yet implemented");
-        return null;
+        return null;//new MyTest();
     }
 
 
@@ -47,6 +50,16 @@ public class DialogService extends Service {
             }
         }, 3 * 1000);
 
+    }
+
+    class MyTest extends IMyTest.Stub
+    {
+
+        @Override
+        public String getName() throws RemoteException
+        {
+            return "test";
+        }
     }
 
 }
